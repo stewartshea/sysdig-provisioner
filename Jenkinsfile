@@ -1,5 +1,5 @@
 podTemplate(
-label: 'tf-applier',
+label: 'terraform',
 cloud: 'openshift',
 containers: [
     containerTemplate(name: 'terraform',
@@ -11,7 +11,7 @@ containers: [
     )
 {
 
-    node('tf-applier') {
+    node('terraform') {
     container('terraform')
     {
         stage('Test agent') {
