@@ -5,7 +5,8 @@ containers: [
     containerTemplate(name: 'terraform',
                     image: 'hashicorp/terraform',
                     resourceLimitMemory: '512Mi',
-                    workingDir:'/home/jenkins'
+                    workingDir:'/home/jenkins',
+                    command: 'cat'
                     )
     ]
     )
