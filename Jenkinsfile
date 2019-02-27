@@ -7,7 +7,7 @@ containers: [
                     resourceLimitMemory: '512Mi',
                     workingDir:'/home/jenkins',
                     command: '/bin/sh -c',
-                    args: 'cat'
+                    args: 'sleep infinity'
                     )
     ]
     )
