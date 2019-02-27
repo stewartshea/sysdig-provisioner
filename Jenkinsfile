@@ -1,5 +1,5 @@
 podTemplate(
-label: 'nodejs8',
+label: 'tf-applier',
 cloud: 'openshift',
 containers: [
     containerTemplate(name: 'terraform',
