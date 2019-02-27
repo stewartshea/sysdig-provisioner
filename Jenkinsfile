@@ -6,8 +6,7 @@ containers: [
                     image: 'hashicorp/terraform',
                     resourceLimitMemory: '512Mi',
                     workingDir:'/home/jenkins',
-                    command: '/bin/sh -c',
-                    args: 'sleep 6000'
+                    command: 'sleep 6000'
                     )
     ]
     )
