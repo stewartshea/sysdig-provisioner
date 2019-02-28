@@ -18,7 +18,7 @@ containers: [
     container('sdcclient')
     {
         stage('Test agent') {
-        withCredentials([string(credentialsId: '1a12dfa4-7fc5-47a7-aa17-cc56572a41c7', variable: 'SYSDIG_API_TOKEN')]) {
+        withCredentials([string(credentialsId: 'sysdig-api-token', variable: 'SYSDIG_API_TOKEN')]) {
 
                 sh 'python /sysdig/test.py $SYSDIG_API_TOKEN stupidteam '
                 sh 'echo $SYSDIG_API_TOKEN > tokentest'
