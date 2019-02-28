@@ -11,7 +11,6 @@ api_token = os.environ['SYSDIG_API_TOKEN']
 
 sdclient = SdcClient(sdc_token)
 
-{% for team_name in team %}
 print('Now trying to create a team with name:', team_name)
 ok, res = sdclient.create_team(team_name)
 if not ok:
@@ -19,4 +18,3 @@ if not ok:
     sys.exit(1)
 else:
     print('Team creation succeeded.', res)
-{% endfor %}
