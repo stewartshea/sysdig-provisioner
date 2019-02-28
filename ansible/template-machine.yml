@@ -10,8 +10,3 @@
         src: team_mgmt.py.j2
         dest: ../sysdig/team_mgmt.py
         backup: no
-    - name: Render dashboard templates
-      template: 
-        src: dashboards.py.j2
-        dest: ../sysdig/dashboards.py
-        backup: no
