@@ -15,10 +15,12 @@ containers: [
     container('sdcclient')
     {
         stage('Test agent') {
-                    environment {
-                        SYSDIG_API_TOKEN = credentials('sysdig-api-token')
-                        }
-                sh 'python /sysdig/test.py stupidteam'
+                    // environment {
+                    //     SYSDIG_API_TOKEN = credentials('sysdig-api-token')
+                    //     }
+                withCredentials([string(credentialsId: 'sysdig-api-token', variable 'SYSDIG_API_TOKEN')]){
+                sh 'python /sysdig/test.py stupidteam '
+                }
         
         }
     }
