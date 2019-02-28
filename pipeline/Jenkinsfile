@@ -18,7 +18,7 @@ containers: [
             SYSDIG_API_TOKEN = credentials('sysdig-api-token')
                 }
         stage('Test agent') {
-                sh 'cat $SYSDIG_API_TOKEN > tokentest'
+                sh 'echo $SYSDIG_API_TOKEN > tokentest'
         
         }
     }
