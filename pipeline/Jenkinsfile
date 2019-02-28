@@ -9,7 +9,7 @@ containers: [
                     )
     ]
     )
-pipeline {
+{
 
     node('sdcclient') {
     container('sdcclient')
