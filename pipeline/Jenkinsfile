@@ -3,7 +3,7 @@ label: 'sdcclient',
 cloud: 'openshift',
 containers: [
     containerTemplate(name: 'sdcclient',
-                    image: 'stewartshea/sysdig-sdcclient:0.8',
+                    image: 'stewartshea/sysdig-sdcclient:0.9',
                     resourceLimitMemory: '512Mi',
                     workingDir:'/home/jenkins'
                     )
@@ -20,8 +20,7 @@ containers: [
         stage('Test agent') {
         withCredentials([string(credentialsId: 'sysdig-api-token', variable: 'SYSDIG_API_TOKEN')]) {
 
-                sh 'python /sysdig/test.py $SYSDIG_API_TOKEN stupidteam '
-                sh 'echo $SYSDIG_API_TOKEN > tokentest'
+                sh 'python /sysdig/test.py stupidteam '
         }
         }
     }

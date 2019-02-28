@@ -7,8 +7,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), 
 from sdcclient import SdcClient
 
 # Input Sysdig API token
-#sdc_token = os.environ['SYSDIG_API_TOKEN']
-sdc_token = sys.argv[1]
+sdc_token = os.environ['SYSDIG_API_TOKEN']
+#sdc_token = sys.argv[1]
 
 # Instantiate the Sysdig client
 
