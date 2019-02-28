@@ -2,7 +2,12 @@
 
 # import client
 import os
+import copy
+import json
+import requests
 import sys
+import hashlib
+import traceback
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), '..'))
 from sdcclient import SdcClient
 
@@ -19,11 +24,13 @@ sdclient = SdcClient(sdc_token)
 {% set namespaces = {} %}
 
 #### TEAM CREATION {{team_name.name}} ####
-{#{% for namespace in team_name.namespaces %}
-{% set namespace2 = namespace.update({{ namespace.name }}) %}
-{% endfor%}}#}
+nsfilter="{% for namespace in team_name.namespaces %}kubernetes.namespace.name='{{ namespace.name }}'{% if not loop.last %}{{' and '}}{% endif %}{% endfor%}"
+
+
+print (filter)
 print('Now trying to create a team with name:', '{{team_name.name}}')
-ok, res = sdclient.create_team( '{{team_name.name}}', filter="kubernetes.namespace.name='devops-wekan'", show="container" )
+
+ok, res = sdclient.create_team( '{{team_name.name}}', filter=nsfilter, show="container" )
 if not ok:
     print('Team creation failed:', res, '. Exiting.')
 else:
@@ -42,15 +49,11 @@ if not ok:
         print('User creation failed:', res, '. Exiting.')
 else:
     print('User creation succeeded')
-{% set team_members2 = team_members.update({ member.name :'ROLE_TEAM_READ'}) %}
+{% set team_members2 = team_members.update({ member.name :'ROLE_TEAM_MANAGER'}) %}
 {% endfor %}
 
 #### EDIT TEAM {{team_name.name}} #####
 print('Now trying to edit team:', '{{team_name.name}}')
-# memberships = {
-#     'admin@draios.com': 'ROLE_TEAM_MANAGER',
-#     'john-doe@sysdig.com': 'ROLE_TEAM_READ'
-# }
 memberships={{ team_members }}
 ok, res = sdclient.edit_team('{{team_name.name}}', memberships=memberships)
 if not ok:
@@ -61,12 +64,22 @@ else:
 
 #### DASHBOARD CREATION ####
 {% for dashboard in team_name.dashboards %}
+
+####### IMPERSONATE USER #######
+print('Get User Token')
+remote_user = "husker@arctiq.ca"
+remote_team = "ColonialOne"
+dashboard_token = sdclient.get_user_api_token(remote_user, remote_team)
+print(dashboard_token)
+print('Set client with token')
+teamclient = SdcClient(dashboard_token[1])
+
 dashboardSource = "{{ dashboard.name }}"
 dashboardName = "{{team_name.name}}-" + dashboardSource
 
 
 print('Creating dashboard from dashboard')
-ok, res = sdclient.create_dashboard_from_view(dashboardName, dashboardSource, None, True)
+ok, res = teamclient.create_dashboard_from_view(dashboardName, dashboardSource, None, True)
 
 #
 # Check the result

@@ -12,9 +12,6 @@ containers: [
 {
 
     node('sdcclient') {
-        // environment {
-        //     SYSDIG_API_TOKEN = credentials('sysdig-api-token')
-        //     }
     container('sdcclient')
     {
         stage('Generate Python Scripts') {
@@ -23,24 +20,12 @@ containers: [
                 sh 'ansible-playbook /ansible/template-machine.yml'
         }
         }
-        stage('Update Teams') {
+        stage('Update Sysdig Config') {
         withCredentials([string(credentialsId: 'sysdig-api-token', variable: 'SYSDIG_API_TOKEN')]) {
 
-                sh 'python /ansible/team_mgmt.py'
+                sh 'python /sysdig/team_mgmt.py'
         }
         }
-        // stage('Update Dashboards') {
-        // withCredentials([string(credentialsId: 'sysdig-api-token', variable: 'SYSDIG_API_TOKEN')]) {
-
-        //         sh 'python /ansible/dashboards.py'
-        // }
-        // }
-        // stage('Update Alerts') {
-        // withCredentials([string(credentialsId: 'sysdig-api-token', variable: 'SYSDIG_API_TOKEN')]) {
-
-        //         sh 'python /ansible/alerts.py'
-        // }
-        // }
     }
     }
 }
