@@ -3,7 +3,7 @@ label: 'sdcclient',
 cloud: 'openshift',
 containers: [
     containerTemplate(name: 'sdcclient',
-                    image: 'stewartshea/sysdig-sdcclient:0.5',
+                    image: 'stewartshea/sysdig-sdcclient:0.6',
                     resourceLimitMemory: '512Mi',
                     workingDir:'/home/jenkins'
                     )
@@ -12,16 +12,13 @@ containers: [
 {
 
     node('sdcclient') {
+        environment {
+            SYSDIG_API_TOKEN = credentials('sysdig-api-token')
+            }
     container('sdcclient')
     {
         stage('Test agent') {
-                    // environment {
-                    //     SYSDIG_API_TOKEN = credentials('sysdig-api-token')
-                    //     }
-                withCredentials([string(credentialsId: 'sysdig-api-token', variable 'SYSDIG_API_TOKEN')]){
                 sh 'python /sysdig/test.py stupidteam '
-                }
-        
         }
     }
     }
