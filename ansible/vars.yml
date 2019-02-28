@@ -10,5 +10,14 @@ team:
       - name: "MySQL/PostgreSQL"
     namespaces: 
       - name: devops-wekan
-#  - name: Galactica
+  - name: Galactica
+    role: read
+    members: 
+      - name: husker@arctiq.ca
+      - name: boomer@arctiq.ca
+    dashboards: 
+      - name: "MongoDB"
+      - name: "MySQL/PostgreSQL"
+    namespaces: 
+      - name: devops-wekan
 #  - name: OlympicCarrier
