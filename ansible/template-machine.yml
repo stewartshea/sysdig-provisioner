@@ -1,0 +1,12 @@
+---
+- name: Generate Terraform File
+  hosts: localhost
+  connection: local
+  vars_files: 
+    - vars.yml
+  tasks: 
+    - name: Render template
+      template: 
+        src: main.tf.j2
+        dest: ../terraform/account-syncer/main.tf
+        backup: yes

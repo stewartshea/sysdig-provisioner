@@ -1,0 +1,14 @@
+#! /usr/bin/python
+
+# import client
+import os
+from sdcclient import SdcClient
+
+# Input Sysdig API token
+api_token = os.environ['SYSDIG_API_TOKEN']
+
+# Instantiate the Sysdig client
+
+{% for team_name in team %}
+sdclient = SdcClient(sdc_token)
+{% endfor %}
