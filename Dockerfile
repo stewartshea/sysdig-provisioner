@@ -7,5 +7,8 @@ ADD entrypoint.sh .
 
 RUN chmod g=u /etc/passwd
 
+RUN chgrp -R 0 /sysdig && \
+    chmod -R g=u /sysdig 
+
 ENTRYPOINT [ "/entrypoint.sh" ]
  
