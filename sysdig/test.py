@@ -14,7 +14,7 @@ sdc_token = os.environ['SYSDIG_API_TOKEN']
 
 sdclient = SdcClient(sdc_token)
 
-team_name = sys.argv[2]
+team_name = sys.argv[1]
 
 
 print('Now trying to create a team with name:', team_name)
