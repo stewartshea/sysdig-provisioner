@@ -8,7 +8,6 @@ from sdcclient import SdcClient
 
 # Input Sysdig API token
 sdc_token = os.environ['SYSDIG_API_TOKEN']
-#sdc_token = sys.argv[1]
 
 # Instantiate the Sysdig client
 

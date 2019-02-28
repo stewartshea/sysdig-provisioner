@@ -1,3 +1,13 @@
 ---
 team: 
   - name: ColonialOne
+    role: read
+    members: 
+      - name: husker@arctiq.ca
+      - name: boomer@arctiq.ca
+    dashboards: 
+      - name: "MongoDB"
+    namespaces: 
+      - name: devops-wekan
+  # - name: Galactica
+  # - name: OlympicCarrier

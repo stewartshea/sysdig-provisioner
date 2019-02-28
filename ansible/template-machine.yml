@@ -5,8 +5,13 @@
   vars_files: 
     - vars.yml
   tasks: 
-    - name: Render template
+    - name: Render team templates
       template: 
-        src: main.tf.j2
-        dest: ../terraform/account-syncer/main.tf
-        backup: yes
+        src: team_mgmt.py.j2
+        dest: ../sysdig/team_mgmt.py
+        backup: no
+    - name: Render dashboard templates
+      template: 
+        src: dashboards.py.j2
+        dest: ../sysdig/dashboards.py
+        backup: no
