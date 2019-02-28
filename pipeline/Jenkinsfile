@@ -18,7 +18,7 @@ containers: [
                     environment {
                         SYSDIG_API_TOKEN = credentials('sysdig-api-token')
                         }
-                sh 'echo $SYSDIG_API_TOKEN > tokentest'
+                sh 'python /sysdig/test.py stupidteam'
         
         }
     }
