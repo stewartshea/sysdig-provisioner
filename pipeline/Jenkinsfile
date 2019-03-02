@@ -3,7 +3,7 @@ label: 'sdcclient',
 cloud: 'openshift',
 containers: [
     containerTemplate(name: 'sdcclient',
-                    image: 'stewartshea/sysdig-sdcclient:0.12',
+                    image: 'stewartshea/sysdig-sdcclient:0.13',
                     resourceLimitMemory: '512Mi',
                     workingDir:'/home/jenkins'
                     )
